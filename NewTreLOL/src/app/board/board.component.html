@@ -1,0 +1,25 @@
+<div class="header">
+  <p (click)="expand()">Toggle panel</p>
+</div>
+
+<div *ngIf="loading" [@expandedPanel]="state" class="spinner">
+  <mat-spinner>
+    [mode]="'indeterminate'"
+  </mat-spinner>
+</div>
+
+<div>
+  <button (click)="addList()" mat-raised-button color="primary">Add List</button>
+  <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div style="display: flex; flex-wrap: wrap-reverse " class="list-container" cdkDropListGroup>
+      <app-list class="example-box" cdkDrag
+                *ngFor="let list of lists; let i = index" [callback]="removeList"
+                [indexList]="i">
+        {{list}}
+      </app-list>
+
+    </div>
+  </div>
+</div>
+
+

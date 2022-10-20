@@ -1,0 +1,36 @@
+<form [formGroup]="myForm" >
+<div class="container ">
+
+  <div   class="list" cdkDropList [cdkDropListData]="questionArray.controls" (cdkDropListDropped)="drop($event)">
+      <mat-card class="list-item" formArrayName="items"
+              *ngFor="let item of questionArray.controls ;index as i "  cdkDrag>
+
+      <mat-card-content>
+        <tr>
+            <td >
+            <span >
+            <input matInput name="content" type="text" [value]="item.value" [formControlName]="i">
+              <br>
+            <button mat-raised-button  type="submit" color="accent" (click)="removeItemControl(i)">
+            <i class="fa fa-remove"></i> Delete </button>
+            </span>
+          </td>
+        </tr>
+      </mat-card-content>
+    </mat-card>
+    </div>
+
+  <form #newItemForm="ngForm">
+    <mat-form-field>
+      <input matInput name="newItem" type="text"  placeholder="Enter a new item" #tet>
+
+    </mat-form-field>
+
+    <button mat-raised-button  type="submit" color="accent"  (click)="onSubmit(tet)">Add Item</button>
+    <hr>
+    <button mat-raised-button  type="submit" color="warn"  (click)="removeIList()">Delete List</button>
+
+  </form>
+
+</div>
+</form>
